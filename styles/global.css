@@ -1,0 +1,75 @@
+body{
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  color: #666;
+}
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper{
+	background-color: #eee
+}
+.ui-bar-a, .ui-page-theme-a .ui-bar-inherit, html .ui-bar-a .ui-bar-inherit, html .ui-body-a .ui-bar-inherit, html body .ui-group-theme-a .ui-bar-inherit{
+	background-color: #f9f9f9;
+	overflow: hidden;
+}
+.ui-page-theme-a .ui-btn.ui-btn-active, .ui-page-theme-a .ui-btn:hover, .ui-page-theme-a .ui-btn:focus{
+	background-color: transparent;
+	text-shadow:none;
+	border:none;
+	padding: 0;
+	color: #444;
+	box-shadow: none;
+}
+
+.ui-header .ui-btn-left{
+	font-size: 1.8rem;
+	background-color: transparent !important;
+	margin-top: -3px !important;
+}
+.ui-shadow{
+	box-shadow: none
+}
+.ui-btn-left, .ui-btn-right {
+	top: 0.2em;
+}
+.ui-panel-inner{
+	padding: 0
+}
+.sidePanel{
+	background-color: #444 !important
+}
+.sidePanel li{
+	border-top: 1px solid #555;
+}
+.sidePanel a{
+	display: block;
+	font-size: 1.2rem;
+	color: #ccc !important;
+	padding: 5px 20px;
+	font-weight: normal !important;
+}
+.logo-cntr{
+	background-color: #333
+}
+.category-grouping > .span-1{
+	box-shadow: 1px 1px 2px #ccc
+}
+.category-grouping a{
+	color: #444
+}
+.category-grouping p a, .ui-page-theme-a h3 a{
+	color: #555;
+	font-weight: normal;
+}
+.category-grouping .load-more{
+	display: block;
+	margin-top: 10px;
+	background-color: transparent;
+	font-size: 1.2rem;
+	color: #438bc5;
+}
+
+[class*='span-']:last-of-type.video-container{
+	padding: 0;
+}
+.link-color{
+	color: #438bc5 !important;
+}
