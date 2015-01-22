@@ -30,11 +30,11 @@ PRP.templates = {
 						
 						'<div role="main" class="ui-content jqm-content jqm-fullwidth">',
 							'<div class="row content-top category-grouping">',
-								'<div class="span-1 c rounded-corners white">',
+								'<div class="span-1 c rounded-corners white category-container">',
 									
 									
-									'<div class="span-1 light-grey-line bottom-line category-grouping-programs" ng-repeat="program in subCategoryPage.programs">',
-										'<div class="span-40 no-pad pad-top">',
+									'<div class="span-1 light-grey-line bottom-line no-pad category-grouping-programs" ng-repeat="program in subCategoryPage.programs">',
+										'<div class="span-40 no-pad pad-top pad-bottom">',
 											'<a href="" ng-click="callVideo(program, subCategoryPage.categoryid)" data-transition="slide"><img ng-src="{{program.thumbnailUrl}}" style="width:100%;"></a>',
 										'</div>',
 										'<div class="span-60 l pad">',

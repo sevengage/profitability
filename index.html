@@ -100,13 +100,13 @@
 	<div role="main" class="ui-content jqm-content jqm-fullwidth">
 
 		<div class="row content-top category-grouping" ng-repeat="subCat in page.subCategories">
-			<div class="span-1 rounded-corners white no-pad pad-bottom">
-				<h3 class="no-margin normal pad light-grey-line bottom-line lighter"><a href="" category-pages data-subCategoryId="{{subCat.categoryid}}" data-parentId="{{page.categoryid}}">{{subCat.name}} <i class="icon-ellipsis align-right"></i></a> </h3>
+			<div class="span-1 rounded-corners white category-container">
+				<h3 class="no-margin normal light-grey-line bottom-line lighter"><a href="" category-pages data-subCategoryId="{{subCat.categoryid}}" data-parentId="{{page.categoryid}}">{{subCat.name}} <i class="icon-ellipsis align-right"></i></a> </h3>
 
 				<div class="span-1 c preloader" ng-show="showPreloader"><img src="assets/350_small.gif"></div>
 
-				<div class="span-1 light-grey-line bottom-line category-grouping-programs" ng-repeat="program in subCat.programs | limitTo:programLimit">
-					<div class="span-40 no-pad pad-top">
+				<div class="span-1 light-grey-line bottom-line no-pad category-grouping-programs" ng-repeat="program in subCat.programs | limitTo:programLimit">
+					<div class="span-40 no-pad pad-top pad-bottom">
 						<a href="" ng-click="callVideo(program, page.categoryid)" data-transition="slide"><img ng-src="{{program.thumbnailUrl}}" style="width:100%;"></a>
 					</div>
 					<div class="span-60 l pad">
@@ -127,13 +127,13 @@
 
 
 		<div ng-if="categories.parentCategoryPrograms.length != 0 && page.subCategories.length == 0" class="row content-top category-grouping">
-			<div class="span-1 rounded-corners white no-pad pad-bottom">
-				<h3 class="no-margin normal pad light-grey-line bottom-line lighter">{{categories[0].name}}</h3>
+			<div class="span-1 rounded-corners white category-container">
+				<h3 class="no-margin normal light-grey-line bottom-line lighter">{{categories[0].name}}</h3>
 
 				<div class="span-1 c preloader" ng-show="showPreloader"><img src="assets/350_small.gif"></div>
 
-				<div class="span-1 light-grey-line bottom-line category-grouping-programs" ng-repeat="program in categories[0].parentCategoryPrograms">
-					<div class="span-40 no-pad pad-top">
+				<div class="span-1 light-grey-line bottom-line no-pad category-grouping-programs" ng-repeat="program in categories[0].parentCategoryPrograms">
+					<div class="span-40 no-pad pad-top pad-bottom">
 						<a href="" ng-click="callVideo(program, page.categoryid)" data-transition="slide"><img ng-src="{{program.thumbnailUrl}}" style="width:100%;"></a>
 					</div>
 					<div class="span-60 l pad">
