@@ -33,30 +33,6 @@ PRP.app.directive("panel", ["utils", function (utils){
 
 
 
-/* Load Video Page Directive
------------------------------------------------------------------*/
-PRP.app.directive("video", ["utils", function (utils){
-	return{
-		restrict: "AC",
-		link: function($scope, element){
-			element.click(function(){				
-
-				$scope.video = {
-					name: $scope.program.Title,
-					description: $scope.program.Description,
-					runtime: $scope.program.duration
-				};
-				
-				
-			});
-
-		}
-	};
-}]);
-
-
-
-
 /* Bakes & Appends Category Pages when the user reqeusts a subCat
 -----------------------------------------------------------------*/
 PRP.app.directive("categoryPages", ["$compile", "utils", function ($compile, utils){

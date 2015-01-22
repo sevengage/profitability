@@ -88,7 +88,7 @@ PRP.app.service("process", ["api", "utils", function (api, utils){
 			delete obj.thumbnail;
 		}
 
-		return categories;		
+		return categories;
 	};
 
 
@@ -114,7 +114,7 @@ PRP.app.service("utils", function(){
 	this.objectHasProperty = function(obj, val){
 		for(var prop in obj) {
 			if(obj.hasOwnProperty(prop) && obj[prop] === Number(val)) {
-				return true;   
+				return true;
 			}
 		}
 		return false;

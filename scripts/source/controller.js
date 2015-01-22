@@ -54,7 +54,7 @@ PRP.app.controller("PagesController", ["$scope", "api", "process", "utils", func
 			hasCategoryId = utils.objectHasProperty($scope.categories[i], category_id);
 
 			// see if this cat has subcats otherwise get the programs for the cat
-			if($scope.categories[i].subCategories.length !== 0){	
+			if($scope.categories[i].subCategories.length !== 0){
 
 				//check to see if this category matches the parent category passed in
 				if(hasCategoryId){
@@ -104,7 +104,7 @@ PRP.app.controller("PagesController", ["$scope", "api", "process", "utils", func
 
 
 
-
+	// Calls the video asset
 	$scope.callVideo = function(program, page){
 		$scope.video = {
 			name: program.Title,
