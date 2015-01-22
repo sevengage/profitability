@@ -126,7 +126,7 @@
 
 
 
-		<div ng-if="categories.parentCategoryPrograms.length != 0" class="row content-top category-grouping">
+		<div ng-if="categories.parentCategoryPrograms.length != 0 && page.subCategories.length == 0" class="row content-top category-grouping">
 			<div class="span-1 rounded-corners white no-pad pad-bottom">
 				<h3 class="no-margin normal pad light-grey-line bottom-line lighter">{{categories[0].name}}</h3>
 

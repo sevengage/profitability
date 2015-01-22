@@ -97,7 +97,7 @@ PRP.app.controller("PagesController", ["$scope", "api", "process", "utils", func
 			}else{
 				$scope.categories[args.index].parentCategoryPrograms = programs;
 			}
-
+console.log($scope.categories)
 			$scope.showPreloader = false;
 		});
 	}
