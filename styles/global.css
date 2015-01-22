@@ -2,7 +2,9 @@ body{
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   color: #666;
 }
-
+.preloader{
+	margin:40px 0;
+}
 .ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper{
 	background-color: #eee
 }
@@ -65,6 +67,9 @@ body{
 	background-color: transparent;
 	font-size: 1.2rem;
 	color: #438bc5;
+}
+.category-grouping-programs:last-of-type{
+	border:none;
 }
 
 [class*='span-']:last-of-type.video-container{

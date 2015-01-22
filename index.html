@@ -8,6 +8,12 @@
 <title></title>
 <meta name="description" content="" />
 <meta name="author" content="" />
+
+<meta http-equiv='cleartype' content='on'>
+<meta name='HandheldFriendly' content='True'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='black'>
+
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="styles/framework-mx.css">
 <link rel="stylesheet" type="text/css" href="styles/jquery.mobile-1.4.5.css">
@@ -34,11 +40,14 @@
 
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="scripts/jquery.mobile-1.4.5.js" type="text/javascript"></script>
+<script src="scripts/lib/jquery.mobile-1.4.5.js" type="text/javascript"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
-<script src="scripts/addtohomescreen.js"></script>
-<script src="scripts/angular-touch.js"></script>
+<script src="scripts/lib/addtohomescreen.js"></script>
+<script src="scripts/lib/angular-touch.js"></script>
+
+<script src='scripts/lib/jwplayer.js' type='text/javascript'></script>
+<script src='scripts/lib/jwplayer.html5.js' type="text/javascript"></script>
 
 <script type="text/javascript">
 
@@ -51,7 +60,8 @@ PRP.app = angular.module("mobile", ["ngTouch"]);
 -----------------------------------------------------------------*/
 PRP.properties = {
 	key: "ad0609da-0066-11e4-b265-005056865f49",
-	project_uuid: "wp224l18"
+	project_uuid: "wp224l18",
+	jwplayer_key: "ttwoHLEQFRk9Kct9YkSlJw6IeXfuP5pkKnDtHVDUcGs="
 };
 
 
@@ -65,43 +75,43 @@ PRP.app.constant("base", {
 
 
 PRP.templates = {
-	subCategoryPage: ['<div data-role="page" id="{{subCategory.categoryid}}" class="hide">',
-					'<div data-role="header" data-position="fixed">',
-						'<a href="#{{subCategory.parentid}}" class="header-nav-item ui-btn-left large menu"><i class="icon-arrow-left"></i></a>',
-						'<h1>{{subCategory.name}}</h1>',
-					'</div>',
-					
-					'<div role="main" class="ui-content jqm-content jqm-fullwidth">',
-						'<div class="row content-top category-grouping">',
-							'<div class="span-1 c rounded-corners white">',
-								
-								
-								'<div class="span-1 light-grey-line bottom-line" ng-repeat="program in subCategory.programs">',
-									'<div class="span-40 no-pad pad-top">',
-										'<a href="#video" data-transition="slide"><img ng-src="{{program.thumbnailUrl}}" style="width:100%;"></a>',
+	subCategoryPage: ['<div data-role="page" id="{{subCategoryPage.categoryid}}" class="hide">',
+						'<div data-role="header" data-position="fixed">',
+							'<a href="#{{subCategoryPage.parentid}}" data-transition="slide" data-direction="reverse" class="header-nav-item ui-btn-left large menu"><i class="icon-arrow-left"></i></a>',
+							'<h1>{{subCategoryPage.name}}</h1>',
+						'</div>',
+						
+						'<div role="main" class="ui-content jqm-content jqm-fullwidth">',
+							'<div class="row content-top category-grouping">',
+								'<div class="span-1 c rounded-corners white">',
+									
+									
+									'<div class="span-1 light-grey-line bottom-line category-grouping-programs" ng-repeat="program in subCategoryPage.programs">',
+										'<div class="span-40 no-pad pad-top">',
+											'<a href="" ng-click="callVideo(program, subCategoryPage.categoryid)" data-transition="slide"><img ng-src="{{program.thumbnailUrl}}" style="width:100%;"></a>',
+										'</div>',
+										'<div class="span-60 l pad">',
+											'<h5 class="med"><a href="" ng-click="callVideo(program, subCategoryPage.categoryid)" class="bold" data-transition="slide">{{program.Title}}</a></h5>',
+											'<p class="small"><a href="" ng-click="callVideo(program, subCategoryPage.categoryid)" data-transition="slide">{{program.Description}}</a></p>',
+											'<p class="small">{{program.duration}}</p>',
+										'</div>',
 									'</div>',
-									'<div class="span-60 l pad">',
-										'<h5 class="med"><a href="#video" class="bold" data-transition="slide">{{program.Title}}</a></h5>',
-										'<p class="small"><a href="#video" data-transition="slide">{{program.Description}}</a></p>',
-										'<p class="small">{{program.duration}}</p>',
-									'</div>',
+
+
 								'</div>',
-
-
 							'</div>',
-						'</div>',
-					'</div><!-- end main -->',
+						'</div><!-- end main -->',
 
-					'<div data-role="panel" id="sidePanelSubCat" class="sidePanel" data-position-fixed="true" data-display="push">',
-						'<div class="span-1 pad logo-cntr">',
-							'<img src="assets/PRP_final_14mar13.png" class="flex-img">',
+						'<div data-role="panel" id="sidePanelSubCat" class="sidePanel" data-position-fixed="true" data-display="push">',
+							'<div class="span-1 pad logo-cntr">',
+								'<img src="assets/PRP_final_14mar13.png" class="flex-img">',
+							'</div>',
+							'<ul class="unstyled align-left full-width-btn">',
+								'<li ng-repeat="item in categories"><a href="#{{item.categoryid}}" data-transition="slide" panel>{{item.name}}</a></li>',
+							'</ul>',
 						'</div>',
-						'<ul class="unstyled align-left full-width-btn">',
-							'<li ng-repeat="item in categories"><a href="#{{item.categoryid}}" data-transition="slide" panel>{{item.name}}</a></li>',
-						'</ul>',
-					'</div>',
 
-				'</div><!-- Category page -->'].join("")
+					'</div><!-- Category page -->'].join("")
 };
 
 
@@ -250,7 +260,9 @@ PRP.app.service("utils", function(){
 
 	// reusable chagne page method
 	this.changePage = function(context){
-		$.mobile.changePage(context);
+		$.mobile.changePage(context, {
+			transition: "slide"
+		});
 		$(context).removeClass("hide");
 	};
 });
@@ -287,6 +299,31 @@ PRP.app.directive("panel", ["utils", function (utils){
 		}
 	};
 }]);
+
+
+
+
+/* Load Video Page Directive
+-----------------------------------------------------------------*/
+PRP.app.directive("video", ["utils", function (utils){
+	return{
+		restrict: "AC",
+		link: function($scope, element){
+			element.click(function(){				
+
+				$scope.video = {
+					name: $scope.program.Title,
+					description: $scope.program.Description,
+					runtime: $scope.program.duration
+				};
+				
+				
+			});
+
+		}
+	};
+}]);
+
 
 
 
@@ -356,7 +393,9 @@ PRP.app.controller("PagesController", ["$scope", "api", "process", "utils", func
 	$scope.showPreloader = false;
 	$scope.isLoggedIn = false;
 	$scope.subCategoryPage = {};
+	
 
+	jwplayer.key = PRP.properties.jwplayer_key;
 
 	//fetches the project information then refactors the data into a more useable structure
 	api.getProject().then(function(data){
@@ -442,6 +481,37 @@ PRP.app.controller("PagesController", ["$scope", "api", "process", "utils", func
 	}
 
 
+
+
+	$scope.callVideo = function(program, page){
+		$scope.video = {
+			name: program.Title,
+			description: program.Description,
+			duration: program.duration,
+			parentPage: page
+		};
+
+		utils.changePage("#video");
+
+		jwplayer("videoProgram").setup({
+			androidhls: true,
+			autostart: true,
+			file: program.asset.m3u8AndroidURL,
+			title: program.Title,
+			width: "100%",
+			flashplayer: "scripts/jwplayer.flash.swf",
+			aspectratio: "16:9"
+		});
+
+		jwplayer().onError(showErrorScreen);
+
+		function showErrorScreen(){
+			window.alert("Oops. Unable to playback video. Please try again or choose another video");
+		}
+
+	};
+
+
 	
 }]);
 
@@ -462,7 +532,7 @@ PRP.app.controller("PagesController", ["$scope", "api", "process", "utils", func
 					<div class="span-1 c pad">
 						<form name="loginForm" class="login-form">
 							<h2 class="lighter"><img src="assets/PRP_final_14mar13.jpg" style="width:100%"></h2>
-							<p>Member Login {{isLoggedIn}}</p>
+							<p>Member Login</p>
 							<p>
 								<input type="email" name="email" class="input-full-width large" data-role="none" ng-model="email" placeholder="Email Address">
 								<input type="password" class="input-full-width large" name="password" data-role="none" ng-model="password" placeholder="Password">
@@ -495,17 +565,17 @@ PRP.app.controller("PagesController", ["$scope", "api", "process", "utils", func
 
 		<div class="row content-top category-grouping" ng-repeat="subCat in page.subCategories">
 			<div class="span-1 rounded-corners white no-pad pad-bottom">
-				<h3 class="no-margin normal pad light-grey-line bottom-line lighter"><a href="" category-pages data-subCategoryId="{{subCat.categoryid}}" data-parentId="{{page.categoryid}}" data-transition="slide">{{subCat.name}} <i class="icon-ellipsis align-right"></i></a> </h3>
+				<h3 class="no-margin normal pad light-grey-line bottom-line lighter"><a href="" category-pages data-subCategoryId="{{subCat.categoryid}}" data-parentId="{{page.categoryid}}">{{subCat.name}} <i class="icon-ellipsis align-right"></i></a> </h3>
 
 				<div class="span-1 c preloader" ng-show="showPreloader"><img src="assets/350_small.gif"></div>
 
-				<div class="span-1 light-grey-line bottom-line no-padi" ng-repeat="program in subCat.programs | limitTo:programLimit">
+				<div class="span-1 light-grey-line bottom-line category-grouping-programs" ng-repeat="program in subCat.programs | limitTo:programLimit">
 					<div class="span-40 no-pad pad-top">
-						<a href="#video" data-transition="slide"><img ng-src="{{program.thumbnailUrl}}" style="width:100%;"></a>
+						<a href="" ng-click="callVideo(program, page.categoryid)" data-transition="slide"><img ng-src="{{program.thumbnailUrl}}" style="width:100%;"></a>
 					</div>
 					<div class="span-60 l pad">
-						<h5 class="med"><a href="#video" class="bold" data-transition="slide">{{program.Title}}</a></h5>
-						<p class="small"><a href="#video" data-transition="slide">{{program.Description}}</a></p>
+						<h5 class="med"><a href="" ng-click="callVideo(program, page.categoryid)" class="bold" data-transition="slide">{{program.Title}}</a></h5>
+						<p class="small"><a href="" ng-click="callVideo(program, page.categoryid)" data-transition="slide">{{program.Description}}</a></p>
 						<p class="small">{{program.duration}}</p>
 					</div>
 				</div>
@@ -526,13 +596,13 @@ PRP.app.controller("PagesController", ["$scope", "api", "process", "utils", func
 
 				<div class="span-1 c preloader" ng-show="showPreloader"><img src="assets/350_small.gif"></div>
 
-				<div class="span-1 light-grey-line bottom-line no-padi" ng-repeat="program in categories[0].parentCategoryPrograms">
+				<div class="span-1 light-grey-line bottom-line category-grouping-programs" ng-repeat="program in categories[0].parentCategoryPrograms">
 					<div class="span-40 no-pad pad-top">
-						<a href="#video" data-transition="slide"><img ng-src="{{program.thumbnailUrl}}" style="width:100%;"></a>
+						<a href="" ng-click="callVideo(program, page.categoryid)" data-transition="slide"><img ng-src="{{program.thumbnailUrl}}" style="width:100%;"></a>
 					</div>
 					<div class="span-60 l pad">
-						<h5 class="med"><a href="#video" class="bold" data-transition="slide">{{program.Title}}</a></h5>
-						<p class="small"><a href="#video" data-transition="slide">{{program.Description}}</a></p>
+						<h5 class="med"><a href="" ng-click="callVideo(program, page.categoryid)" class="bold" data-transition="slide">{{program.Title}}</a></h5>
+						<p class="small"><a href="" ng-click="callVideo(program, page.categoryid)" data-transition="slide">{{program.Description}}</a></p>
 						<p class="small">{{program.duration}}</p>
 					</div>
 				</div>
@@ -563,21 +633,21 @@ PRP.app.controller("PagesController", ["$scope", "api", "process", "utils", func
 
 <div data-role="page" id="video" class="hide">
 	<div data-role="header" data-position="fixed">
-		<a href="#sidePanelVideo" class="header-nav-item ui-btn-left large menu"><i class="icon-list"></i></a>
-		<h1>OhNellie Promos - Plan Plus Promote Equals Profit</h1>
+		<a href="#{{video.parentPage}}" data-transition="slide" data-direction="reverse" class="header-nav-item ui-btn-left large menu"><i class="icon-arrow-left"></i></a>
+		<h1>{{video.name}}</h1>
 	</div>
 	
 	<div role="main" class="ui-content jqm-content jqm-fullwidth">
 		<div class="row content-top category-grouping">
 				
 			<div class="span-1 light-grey-line bottom-line no-pad rounded-corners white video-container">
-				<div class="span-1 no-pad">
-					<img src="http://dummyimage.com/16:9x400" class="flex-img">
+				<div class="span-1 no-pad" id="videoProgram">
+					<img src="assets/350_small.gif">
 				</div>
 				<div class="span-1 l pad">
-					<h1 class="normal">OhNellie Promos - Plan Plus Promote Equals Profit</h1>
-					<p class="small">How to Plan your Promotional Efforts to get the best bang for the buck</p>
-					<p class="small">28:03</p>
+					<h1 class="normal">{{video.name}}</h1>
+					<p class="small">{{video.description}}</p>
+					<p class="small">{{video.duration}}</p>
 				</div>
 			</div>
 
