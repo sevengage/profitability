@@ -94,7 +94,7 @@ PRP.app.service("process", ["api", "utils", function (api, utils){
 
 	// Clean up and process the programs
 	this.programs = function(programs){
-		var i, programLength = programs.length;
+		var i, programLength = Boolean(programs) ? programs.length : 0;
 
 		for (i = 0; i < programLength; i++) {
 			programs[i].duration = utils.secondsToTime(programs[i].duration);

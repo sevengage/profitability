@@ -596,22 +596,6 @@ div.ui-mobile-viewport {
 	border-bottom-right-radius: inherit;
 }
 /* Buttons and icons */
-{
-	font-size: 16px;
-	margin: .5em 0;
-	padding: .7em 1em;
-	display: block;
-	position: relative;
-	text-align: center;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
 .ui-btn-icon-notext,
 .ui-header button.ui-btn.ui-btn-icon-notext,
 .ui-footer button.ui-btn.ui-btn-icon-notext {
@@ -2793,7 +2777,7 @@ fieldset.ui-controlgroup {
 	right: 3.2em;
 }
 .ui-listview .ui-li-has-thumb > img:first-child,
-.ui-listview .ui-li-has-thumb > > img:first-child,
+.ui-listview .ui-li-has-thumb > img:first-child,
 .ui-listview .ui-li-has-thumb .ui-li-thumb {
 	position: absolute;
 	left: 0;
@@ -2803,7 +2787,7 @@ fieldset.ui-controlgroup {
 }
 /* ui-li-has-icon deprecated in 1.4. TODO: remove in 1.5 */
 .ui-listview > .ui-li-has-icon > img:first-child,
-.ui-listview > .ui-li-has-icon > > img:first-child {
+.ui-listview > .ui-li-has-icon > img:first-child {
 	position: absolute;
 	left: .625em;
 	top: .9em;
@@ -2840,11 +2824,11 @@ fieldset.ui-controlgroup {
 	margin: 0;
 	text-align: right;
 }
-.ui-listview > li.ui-li-has-alt > {
+.ui-listview > li.ui-li-has-alt{
 	margin-right: 2.5em;
 	border-right-width: 0;
 }
-.ui-listview > li.ui-li-has-alt > + {
+.ui-listview > li.ui-li-has-alt{
 	position: absolute;
 	width: 2.5em;
 	height: 100%;
@@ -2859,10 +2843,10 @@ fieldset.ui-controlgroup {
 	padding: 0;
 	z-index: 2;
 }
-.ui-listview-inset > li.ui-li-has-alt > + {
+.ui-listview-inset > li.ui-li-has-alt{
 	border-right-width: 1px;
 }
-.ui-listview > li.ui-li-has-alt > + .ui-btn:focus {
+.ui-listview > li.ui-li-has-alt > .ui-btn:focus {
 	z-index: 3;
 }
 ol.ui-listview,
@@ -3148,11 +3132,11 @@ html .ui-popup .ui-field-contain div.ui-slider-switch {
 	height: 0;
 }
 /* this makes ie6 and ie7 set height to 0 to fix z-index problem */
-html >/**/body .ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child {
+html > body .ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child {
 	height: 15px;
 	border-width: 1px;
 }
-html >/**/body .ui-rangeslider.ui-mini .ui-rangeslider-sliders .ui-slider-track:first-child {
+html > body .ui-rangeslider.ui-mini .ui-rangeslider-sliders .ui-slider-track:first-child {
 	height: 12px;
 }
 /* Hide the second label (the first is moved outside the div) */
